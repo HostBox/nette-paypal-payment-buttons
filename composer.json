@@ -1,0 +1,24 @@
+{
+    "name": "hostbox/nette-paypal-payment-buttons",
+    "description": "PayPal payment buttons component for Nette Framework",
+    "keywords": ["nette", "component", "paypal", "payment"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pavel Macháň",
+            "email": "machan@hostbox.cz"
+        }
+    ],
+    "minimum-stability": "RC",
+    "autoload": {
+        "psr-0": {
+            "HostBox\\Components\\": "src/"
+        }
+    },
+    "require": {
+        "nette/nette": "~2.0"
+    },
+    "require-dev": {
+        "nette/tester": "@dev"
+    }
+}

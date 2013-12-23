@@ -1,0 +1,6 @@
+.idea
+*.phar
+*.lock
+*.log
+vendor
+tests/HostBox/output
