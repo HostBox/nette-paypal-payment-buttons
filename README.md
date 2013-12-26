@@ -17,6 +17,8 @@ $ composer require hostbox/nette-paypal-payment-buttons
 
 [Packagist - Versions](https://packagist.org/packages/hostbox/nette-paypal-payment-buttons)
 
+[Nette Forum (cs) - plugin section](http://forum.nette.org/cs/16397-paypal-payment-buttons-jednoducha-komponent-pro-vytvareni-payment-tlacitek)
+
 or manual edit composer.json in your project
 
 ```json
@@ -33,7 +35,7 @@ Component Installation
     services:
         # Config
         - HostBox\Components\PayPal\PaymentButtons\Config('PaypalMerchantId')
-        # Factories
+        # Factory
         - HostBox\Components\PayPal\PaymentButtons\ButtonFactory
 
 
