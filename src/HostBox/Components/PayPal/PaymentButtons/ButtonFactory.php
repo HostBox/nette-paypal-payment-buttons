@@ -27,7 +27,6 @@ class ButtonFactory extends Nette\Object {
         $this->config = $config;
     }
 
-
     /**
      * @param string $name
      * @param array $args

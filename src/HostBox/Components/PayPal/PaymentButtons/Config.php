@@ -10,7 +10,7 @@ class Config extends Nette\Object {
     /** @var string */
     private $merchantId;
 
-    /** @var string */
+    /** @var bool */
     private $sandbox;
 
     /** @var string */
@@ -43,14 +43,14 @@ class Config extends Nette\Object {
     }
 
     /**
-     * @param string $sandbox
+     * @param bool $sandbox
      */
     public function setSandbox($sandbox) {
         $this->sandbox = $sandbox;
     }
 
     /**
-     * @return string
+     * @return bool
      */
     public function getSandbox() {
         return $this->sandbox;
