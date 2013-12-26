@@ -19,13 +19,13 @@ class Config extends Nette\Object {
 
     /**
      * @param string $merchantId
-     * @param bool $sandbox
      * @param string $currency
+     * @param bool $sandbox
      */
-    public function __construct($merchantId, $sandbox = FALSE, $currency = 'CZK') {
+    public function __construct($merchantId, $currency = 'CZK', $sandbox = FALSE) {
         $this->merchantId = $merchantId;
-        $this->sandbox = $sandbox;
         $this->currency = $currency;
+        $this->sandbox = $sandbox;
     }
 
     /**
