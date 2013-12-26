@@ -17,6 +17,9 @@ abstract class PaypalPaymentButton extends Nette\UI\Control implements IPaypalPa
     /** @var int */
     public $amount;
 
+    /** @var string */
+    public $callback;
+
 
     public function __construct(Config $config) {
         $this->config = $config;
