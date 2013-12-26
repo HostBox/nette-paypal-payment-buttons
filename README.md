@@ -1,4 +1,4 @@
-Paypal Payment button component for Nette Framework [![Build Status](https://travis-ci.org/HostBox/nette-paypal-payment-buttons.png)](https://travis-ci.org/HostBox/nette-paypal-payment-buttons)
+Paypal Payment buttons for Nette Framework [![Build Status](https://travis-ci.org/HostBox/nette-paypal-payment-buttons.png)](https://travis-ci.org/HostBox/nette-paypal-payment-buttons)
 ===================
 
 
@@ -90,7 +90,6 @@ class PaypalPaymentPresenter extends Presenter {
 ```
 
 **Template**
-
 
     {control buyNow}
     {control addToCart}
