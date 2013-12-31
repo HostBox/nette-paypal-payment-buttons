@@ -25,7 +25,10 @@ abstract class BasicButton extends PaypalPaymentButton {
     /** @var mixed */
     public $custom;
 
-    /** @var int */
+    /**
+     * @var int
+     * @name item_number
+     */
     public $itemNumber;
 
 }
