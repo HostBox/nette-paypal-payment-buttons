@@ -26,7 +26,7 @@ abstract class PaypalPaymentButton extends Nette\UI\Control implements IPaypalPa
     }
 
     /**
-     * @param array|null $settings
+     * @inheritdoc
      */
     public function render($settings = array()) {
         $this->updateSettings($settings);
@@ -38,16 +38,33 @@ abstract class PaypalPaymentButton extends Nette\UI\Control implements IPaypalPa
     }
 
     /**
-     * @param array $settings
+     * @inheritdoc
      */
     public function assign(array $settings) {
-        $this->updateSettings($settings);
+        if (!is_array($settings) || empty($settings))
+            return;
+
+        $properties = $this->getReflection()->getProperties(\ReflectionProperty::IS_PUBLIC);
+        if (count($properties) > 0) {
+            foreach ($properties as $property) {
+                if ($property->getDeclaringClass() == 'Nette\Application\UI\Control') {
+                    break;
+                }
+
+                $propertyName = $property->name;
+                if (array_key_exists($propertyName, $settings)) {
+                    $this->$propertyName = $settings[$property->name];
+                }
+            }
+        }
     }
 
     /**
+     * @param array $tempSettings
+     * @return void
      * @throws MemberAccessException
      */
-    protected function putSettingsIntoTemplate() {
+    protected function putSettingsIntoTemplate($tempSettings = array()) {
         $properties = $this->getReflection()->getProperties(\ReflectionProperty::IS_PUBLIC);
         if (count($properties) > 0) {
             $result = array();
@@ -62,6 +79,10 @@ abstract class PaypalPaymentButton extends Nette\UI\Control implements IPaypalPa
                         $name = preg_replace('#(.)(?=[A-Z])#', '$1-', $property->name);
                         $name = strtolower($name);
                         $name = rawurlencode($name);
+                    }
+
+                    if (is_array($tempSettings) && !empty($tempSettings) && array_key_exists($property->name, $tempSettings)) {
+                        $value = $tempSettings[$property->name];
                     }
 
                     if (is_bool($value) === TRUE) {
@@ -81,28 +102,6 @@ abstract class PaypalPaymentButton extends Nette\UI\Control implements IPaypalPa
         }
         $this->template->identifier = $identifier;
         $this->template->src = ($reflection->getShortName() == 'AddToCart' ? 'paypal-button-minicart.min.js' : 'paypal-button.min.js');
-    }
-
-    /**
-     * @param array $settings
-     */
-    private function updateSettings(array $settings) {
-        if (!is_array($settings) || empty($settings))
-            return;
-
-        $properties = $this->getReflection()->getProperties(\ReflectionProperty::IS_PUBLIC);
-        if (count($properties) > 0) {
-            foreach ($properties as $property) {
-                if ($property->getDeclaringClass() == 'Nette\Application\UI\Control') {
-                    break;
-                }
-
-                $propertyName = $property->name;
-                if (array_key_exists($propertyName, $settings)) {
-                    $this->$propertyName = $settings[$property->name];
-                }
-            }
-        }
     }
 
 }
