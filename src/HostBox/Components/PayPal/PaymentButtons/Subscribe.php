@@ -2,6 +2,7 @@
 
 namespace HostBox\Components\PayPal\PaymentButtons;
 
+
 /**
  * @identifier subscribe
  */

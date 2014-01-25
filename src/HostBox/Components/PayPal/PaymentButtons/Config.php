@@ -30,6 +30,7 @@ class Config extends Nette\Object {
 
     /**
      * @param string $currency
+     * @return void
      */
     public function setCurrency($currency) {
         $this->currency = $currency;
@@ -44,6 +45,7 @@ class Config extends Nette\Object {
 
     /**
      * @param bool $sandbox
+     * @return void
      */
     public function setSandbox($sandbox) {
         $this->sandbox = $sandbox;
@@ -58,6 +60,7 @@ class Config extends Nette\Object {
 
     /**
      * @param string $merchantId
+     * @return void
      */
     public function setMerchantId($merchantId) {
         $this->merchantId = $merchantId;
