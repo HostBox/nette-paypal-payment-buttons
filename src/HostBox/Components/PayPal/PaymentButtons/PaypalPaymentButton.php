@@ -29,8 +29,7 @@ abstract class PaypalPaymentButton extends Nette\UI\Control implements IPaypalPa
      * @inheritdoc
      */
     public function render($settings = array()) {
-        $this->updateSettings($settings);
-        $this->putSettingsIntoTemplate();
+        $this->putSettingsIntoTemplate($settings);
 
         $this->template->config = $this->config;
         $this->template->setFile(sprintf('%s/templates/default.latte', __DIR__));
