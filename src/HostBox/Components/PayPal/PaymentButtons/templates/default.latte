@@ -1,1 +1,1 @@
-<script src="{$basePath}/js/{$src}?merchant={$config->merchantId}" {if $config->sandbox}data-env="sandbox"{/if} data-currency="{$config->currency}"  {!$pluginSettings}></script>
+<script src="{$basePath}/js/{$src}?merchant={$config->merchantId}" {if $config->sandbox}data-env="sandbox"{/if}{!$pluginSettings} data-currency="{$config->currency}"></script>
