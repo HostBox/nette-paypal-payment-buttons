@@ -73,23 +73,25 @@ abstract class PaypalPaymentButton extends Nette\UI\Control implements IPaypalPa
                     break;
                 }
 
-                if (($value = $this->{$property->name}) !== NULL) {
-                    if (($name = $property->getAnnotation('name')) === NULL) {
-                        $name = preg_replace('#(.)(?=[A-Z])#', '$1-', $property->name);
-                        $name = strtolower($name);
-                        $name = rawurlencode($name);
-                    }
+                if (($name = $property->getAnnotation('name')) === NULL) {
+                    $name = preg_replace('#(.)(?=[A-Z])#', '$1-', $property->name);
+                    $name = strtolower($name);
+                    $name = rawurlencode($name);
+                }
 
-                    if (is_array($tempSettings) && !empty($tempSettings) && array_key_exists($property->name, $tempSettings)) {
-                        $value = $tempSettings[$property->name];
-                    }
+                $value = $this->{$property->name};
+                if (is_array($tempSettings) && !empty($tempSettings) && array_key_exists($property->name, $tempSettings)) {
+                    $value = $tempSettings[$property->name];
+                }
 
-                    if (is_bool($value) === TRUE) {
-                        $value = ($value ? 'true' : 'false');
-                    }
+                if (is_bool($value) === TRUE) {
+                    $value = ($value ? 'true' : 'false');
+                }
 
+                if ($value !== NULL) {
                     $result[] = sprintf('data-%s="%s"', $name, $value);
                 }
+
             }
             $this->template->pluginSettings = implode(' ', $result);
         }
