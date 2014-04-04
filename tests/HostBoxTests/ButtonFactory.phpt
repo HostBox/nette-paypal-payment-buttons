@@ -1,6 +1,9 @@
 <?php
 
+namespace HostBoxTests;
+
 use HostBox\Components\PayPal\PaymentButtons;
+use Tester;
 
 require_once __DIR__ . '/bootstrap.php';
 
