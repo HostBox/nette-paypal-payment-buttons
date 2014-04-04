@@ -64,10 +64,16 @@ abstract class PaypalPaymentButton extends Nette\UI\Control implements IPaypalPa
      * @throws MemberAccessException
      */
     protected function putSettingsIntoTemplate($tempSettings = array()) {
-        $properties = $this->getReflection()->getProperties(\ReflectionProperty::IS_PUBLIC);
-        if (count($properties) > 0) {
-            $result = array();
+        $reflection = $this->getReflection();
+        $properties = $reflection->getProperties(\ReflectionProperty::IS_PUBLIC);
 
+        $identifier = $reflection->getAnnotation('identifier');
+        if ($identifier === NULL) {
+            throw new MemberAccessException(sprintf('Class %s has not "identifier" annotation', $reflection->getShortName()));
+        }
+        $result[] = sprintf('data-button="%s"', $identifier);
+
+        if (count($properties) > 0) {
             foreach ($properties as $property) {
                 if ($property->getDeclaringClass() == 'Nette\Application\UI\Control') {
                     break;
@@ -91,17 +97,10 @@ abstract class PaypalPaymentButton extends Nette\UI\Control implements IPaypalPa
                 if ($value !== NULL) {
                     $result[] = sprintf('data-%s="%s"', $name, $value);
                 }
-
             }
-            $this->template->pluginSettings = implode(' ', $result);
         }
 
-        $reflection = $this->getReflection();
-        $identifier = $reflection->getAnnotation('identifier');
-        if ($identifier === NULL) {
-            throw new MemberAccessException(sprintf('Class %s has not "identifier" annotation', $reflection->getShortName()));
-        }
-        $this->template->identifier = $identifier;
+        $this->template->pluginSettings = implode(' ', $result);
         $this->template->src = ($reflection->getShortName() == 'AddToCart' ? 'paypal-button-minicart.min.js' : 'paypal-button.min.js');
     }
 
