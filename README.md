@@ -18,12 +18,13 @@ $ composer require hostbox/nette-paypal-payment-buttons
 [Packagist - Versions](https://packagist.org/packages/hostbox/nette-paypal-payment-buttons)
 
 [Nette Forum (cs) - plugin section](http://forum.nette.org/cs/16397-paypal-payment-buttons-jednoducha-komponent-pro-vytvareni-payment-tlacitek)
+[Nette Addons](http://addons.nette.org/hostbox/nette-paypal-payment-buttons)
 
 or manual edit composer.json in your project
 
 ```json
 "require": {
-    "hostbox/nette-paypal-payment-buttons": "dev-master"
+    "hostbox/nette-paypal-payment-buttons": "v1.0.0"
 }
 ```
 
@@ -53,6 +54,7 @@ class PaypalPaymentPresenter extends Presenter {
 
 
     public function __construct(ButtonFactory $buttonFactory) {
+        parent::__construct();
         $this->buttonFactory = $buttonFactory;
     }
 
@@ -98,6 +100,5 @@ class PaypalPaymentPresenter extends Presenter {
     {control subscribe}
     {control qRCodes}
 
-    // settings editing in Template
+    // temporary(only for this render) settings editing in Template
     {control donate, quantity => 10, tax => 10.5}
-
